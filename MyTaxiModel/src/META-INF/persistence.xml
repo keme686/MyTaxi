@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="MyTaxiModel">
+	<persistence-unit name="mytaxiModel">
 		<class>com.awudima.mytaxi.model.Booking</class>
 		<class>com.awudima.mytaxi.model.Driver</class>
 		<class>com.awudima.mytaxi.model.Favorite</class>
@@ -8,13 +8,14 @@
 		<class>com.awudima.mytaxi.model.Passenger</class>
 		<class>com.awudima.mytaxi.model.Rating</class>
 		<class>com.awudima.mytaxi.model.Taxi</class>
-	
+	<!-- 
 	<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mytaxi"/>
-			  <property name="javax.persistence.jdbc.user" value="root"/>
+		    <property name="javax.persistence.jdbc.user" value="root"/>
 			<property name="javax.persistence.jdbc.password" value=""/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="eclipselink.ddl-generation" value="create-tables"/>
 		</properties>
+		 -->
 	</persistence-unit>
 </persistence>
