@@ -12,7 +12,7 @@ import com.sun.net.httpserver.HttpServer;
  * @author kemele
  *
  */
-@Path("/storagerest")
+@Path("/rest")
 public class StandaloneServer
 {
 	
