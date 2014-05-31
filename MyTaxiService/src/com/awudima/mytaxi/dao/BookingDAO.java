@@ -1,5 +1,7 @@
 package com.awudima.mytaxi.dao;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -66,17 +68,45 @@ public class BookingDAO {
 			cond = " b.passengerPhone = " + phone;
 		else
 			cond =" b.driverPhone = " + phone;
-			books = em.createQuery("SELECT b FROM booking b WHERE "+cond, Booking.class).getResultList();
+			books = em.createQuery("SELECT b FROM Booking b WHERE "+cond, Booking.class).getResultList();
+		
+		return books;
+	}
+	
+	public List<Booking> getAll(int status, String phone, int userType){
+		
+		List<Booking> books;
+		String cond = "";
+		if(userType == UserType.PASSENGER)
+			cond = " b.passengerPhone = " + phone;
+		else
+			cond =" b.driverPhone = " + phone;
+			books = em.createQuery("SELECT b FROM Booking b WHERE b.status =  " + status + " AND " +cond, Booking.class).getResultList();
 		
 		return books;
 	}
 	
 	public List<Booking> getAll() throws Exception{
-		List<Booking> books = em.createQuery("SELECT b FROM booking b", Booking.class).getResultList();
+		List<Booking> books = em.createQuery("SELECT b FROM Booking b", Booking.class).getResultList();
 		return books;
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		Booking b = new Booking();
+		b.setDriver(DriverDAO.getInstance().getDriver("+251918791209"));
+		b.setPassenger(PassengerDAO.getInstance().getPassenger("+33626076455"));
+		b.setBfrom("kebele 4");
+		b.setBto("BDR University");
+		b.setPickuptime(new Timestamp(new Date().getTime()));
+		b.setPickupLocation("Mosque 04");
+		b.setStatus(0+"");
+		b.setNoteToDriver("Please dont pick another passenger, we are 3");
+		b.setStatusUpdateTime(new Timestamp(new Date().getTime()));
+		b.setPricing("Contract");
 		
+		//Booking bs = BookingDAO.getInstance().addBooking(b);
+		List<Booking> bss = BookingDAO.getInstance().getAll();
+		for(Booking bs: bss)
+		System.out.println(bs.getId());
 	}
 
 }

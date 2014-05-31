@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Date;
 
 
 /**
@@ -24,28 +24,28 @@ public class Passenger implements Serializable {
 
 	private String address;
 
-	private Timestamp created;
+	private Timestamp created= new Timestamp(new Date().getTime());
 
 	private String name;
 
 	private String photoUrl;
 
 	//bi-directional many-to-one association to Booking
-	@OneToMany(mappedBy="passenger")
+	/*@OneToMany(mappedBy="passenger")
 	private List<Booking> bookings;
-
+*/
 	//bi-directional many-to-one association to Favorite
-	@OneToMany(mappedBy="passenger")
+	/*@OneToMany(mappedBy="passenger")
 	private List<Favorite> favorites;
-
+*/
 	//bi-directional many-to-one association to Feedback
-	@OneToMany(mappedBy="passenger")
+	/*@OneToMany(mappedBy="passenger")
 	private List<Feedback> feedbacks;
 
 	//bi-directional many-to-one association to Rating
 	@OneToMany(mappedBy="passenger")
 	private List<Rating> ratings;
-
+*/
 	public Passenger() {
 	}
 
@@ -88,7 +88,7 @@ public class Passenger implements Serializable {
 	public void setPhotoUrl(String photoUrl) {
 		this.photoUrl = photoUrl;
 	}
-
+/*
 	public List<Booking> getBookings() {
 		return this.bookings;
 	}
@@ -175,6 +175,6 @@ public class Passenger implements Serializable {
 		rating.setPassenger(null);
 
 		return rating;
-	}
+	}*/
 
 }

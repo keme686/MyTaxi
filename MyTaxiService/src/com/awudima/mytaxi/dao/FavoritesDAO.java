@@ -60,6 +60,12 @@ public class FavoritesDAO {
 		return favorites;
 	}
 	
+	public List<Favorite> getAll(String phone) throws Exception{
+		List<Favorite> favorites = em.createQuery("SELECT f FROM Favorite f WHERE f.passengerPhone =" +phone, Favorite.class).getResultList();
+		return favorites;
+		
+	}
+	
 	public static void main(String[] args) {
 
 	}

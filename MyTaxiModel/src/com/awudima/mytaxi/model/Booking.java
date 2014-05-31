@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 
 /**
@@ -19,6 +19,15 @@ import java.util.List;
 public class Booking implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@XmlTransient
+	public static final int BOOKING_STATUS_INIT =0;
+	@XmlTransient
+	public static final int BOOKING_STATUS_ACCEPTED =1;
+	@XmlTransient
+	public static final int BOOKING_STATUS_REJECTED =2;
+	@XmlTransient
+	public static final int BOOKING_STATUS_EXPIRED=3;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -54,9 +63,9 @@ public class Booking implements Serializable {
 	private Passenger passenger;
 
 	//bi-directional many-to-one association to Feedback
-	@OneToMany(mappedBy="booking")
+	/*@OneToMany(mappedBy="booking")
 	private List<Feedback> feedbacks;
-
+*/
 	public Booking() {
 	}
 
@@ -163,7 +172,8 @@ public class Booking implements Serializable {
 	public void setPassenger(Passenger passenger) {
 		this.passenger = passenger;
 	}
-
+	
+/*
 	public List<Feedback> getFeedbacks() {
 		return this.feedbacks;
 	}
@@ -184,6 +194,6 @@ public class Booking implements Serializable {
 		feedback.setBooking(null);
 
 		return feedback;
-	}
+	}*/
 
 }

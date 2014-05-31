@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.awudima.mytaxi.service;
 
 import java.util.List;
@@ -13,64 +16,69 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.awudima.mytaxi.dao.DriverDAO;
-import com.awudima.mytaxi.model.Driver;
+import com.awudima.mytaxi.dao.PassengerDAO;
+import com.awudima.mytaxi.model.Passenger;
 
-@Path("/driver")
+/**
+ * @author kemele
+ *
+ */
+@Path("/passenger")
 @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_XML})
 @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_XML})
-public class DriverData {
+public class PassengerData {
 
-	private DriverDAO ddao = DriverDAO.getInstance();
+	PassengerDAO passDao = new PassengerDAO();
 	
 	@POST
-	public Driver addDriver(Driver driver){
+	public Passenger addPassenger(Passenger passenger){
 		try{
-			return ddao.addDriver(driver);
+			return passDao.addPassenger(passenger);
 		}catch(Exception e){
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 	
 	@PUT
-	public Driver update(Driver driver){
+	public Passenger updatePassenger(Passenger passenger){
 		try{
-			return ddao.update(driver);
+			return passDao.update(passenger);
 		}catch(Exception e){
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 	
-	@GET
-	public Driver getDriver(@QueryParam("phone")String phoneNumber){
-		try{
-			return ddao.getDriver(phoneNumber);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return null;
-	}
 	@DELETE
-	public boolean delete(@QueryParam("phone")String phoneNumber){
+	public String deletePassenger(@QueryParam("phone")String phone){
 		try{
-			return ddao.delete(phoneNumber);
+			return ""+ passDao.delete(phone);
 		}catch(Exception e){
 			e.printStackTrace();
+			return false+"";
 		}
-		return false;
 	}
 	
 	@GET
-	@Path("/all")
-	public List<Driver> getAll(){
+	public Passenger getPassenger(@QueryParam("phone")String phone){
 		try{
-			return ddao.getAll();
+			return passDao.getPassenger(phone);
 		}catch(Exception e){
 			e.printStackTrace();
+			return null;
 		}
-		return null;
+	}
+	
+	@GET
+	@Path("all")
+	public List<Passenger> getAll(){
+		try{
+			return passDao.getAll();
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	

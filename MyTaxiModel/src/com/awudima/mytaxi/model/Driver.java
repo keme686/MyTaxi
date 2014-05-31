@@ -6,8 +6,6 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.sql.Timestamp;
-import java.util.List;
-
 
 /**
  * The persistent class for the driver database table.
@@ -39,22 +37,22 @@ public class Driver implements Serializable {
 	private String woreda;
 
 	//bi-directional many-to-one association to Booking
-	@OneToMany(mappedBy="driver")
+	/*@OneToMany(mappedBy="driver")
 	private List<Booking> bookings;
-
+*/
 	//bi-directional many-to-one association to Taxi
 	@ManyToOne
 	@JoinColumn(name="taxiId")
 	private Taxi taxi;
 
 	//bi-directional many-to-one association to Feedback
-	@OneToMany(mappedBy="driver")
+	/*@OneToMany(mappedBy="driver")
 	private List<Feedback> feedbacks;
-
+*/
 	//bi-directional many-to-one association to Rating
-	@OneToMany(mappedBy="driver")
+	/*@OneToMany(mappedBy="driver")
 	private List<Rating> ratings;
-
+*/
 	public Driver() {
 	}
 
@@ -129,7 +127,7 @@ public class Driver implements Serializable {
 	public void setWoreda(String woreda) {
 		this.woreda = woreda;
 	}
-
+/*
 	public List<Booking> getBookings() {
 		return this.bookings;
 	}
@@ -151,7 +149,7 @@ public class Driver implements Serializable {
 
 		return booking;
 	}
-
+*/
 	public Taxi getTaxi() {
 		return this.taxi;
 	}
@@ -159,7 +157,7 @@ public class Driver implements Serializable {
 	public void setTaxi(Taxi taxi) {
 		this.taxi = taxi;
 	}
-
+/*
 	public List<Feedback> getFeedbacks() {
 		return this.feedbacks;
 	}
@@ -202,6 +200,6 @@ public class Driver implements Serializable {
 		rating.setDriver(null);
 
 		return rating;
-	}
+	}*/
 
 }

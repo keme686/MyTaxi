@@ -44,7 +44,6 @@ public class TaxiDAO {
 	
 	public Taxi update(Taxi taxi )throws Exception{
 		EntityTransaction tx = em.getTransaction();
-		tx.begin();
 		em.merge(taxi);
 		tx.commit();
 		return taxi;
@@ -54,7 +53,7 @@ public class TaxiDAO {
 	public boolean delete(int id)throws Exception{
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Taxi taxi = this.getTaxi(id);
+		Taxi taxi = em.find(Taxi.class, id);
 		if(taxi == null)
 			return false;
 		em.remove(taxi);
@@ -80,13 +79,18 @@ public class TaxiDAO {
 		  em.close();
 	}
 	
-	public static void main(String[] args) throws Exception{		
+	public static void main(String[] args) throws Exception{	
+		Taxi t = new Taxi();
+		t.setPassengerCapacity(6);
+		t.setPlateNum("ET837232");
+		t.setTaxiType("Minibus");
+		TaxiDAO.getInstance().addTaxi(t);
 		Taxi taxi = TaxiDAO.getInstance().getTaxi(1);
 		System.out.println(taxi.getPlateNum() + " " + taxi.getTaxiType());
 		
 		List<Taxi> ts = TaxiDAO.getInstance().getAll();
-		for(Taxi t: ts){
-			System.out.println(t.getId() + " " + t.getPlateNum());
+		for(Taxi ta: ts){
+			System.out.println(ta.getId() + " " + ta.getPlateNum());
 		}
 	}
 

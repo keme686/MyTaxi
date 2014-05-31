@@ -42,6 +42,20 @@ public class RatingDAO {
 		return rating;
 		
 	}
+	
+	public boolean delete(int id)throws Exception{
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		Rating r = em.find(Rating.class, id);
+		if(r == null)
+			tx.rollback();
+		else{
+			em.remove(r);
+			tx.commit();
+			return true;
+		}
+		return false;
+	}
 	public Rating getRating(int id)throws Exception {
 		Rating rating = em.find(Rating.class, id);
 		return rating;
